@@ -10,7 +10,6 @@ gem 'bootstrap', '>= 4.3.1'
 
 gem 'simple_form'
 gem 'devise', '>= 4.7.1'
-gem 'factory_bot_rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -50,6 +49,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
 end
 
 group :development do

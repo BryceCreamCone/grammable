@@ -4,6 +4,14 @@ class GramsController < ApplicationController
   def index
   end
 
+  def show
+    begin
+      @gram = Gram.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render :new, status: :not_found
+    end
+  end
+
   def new
   end
 

@@ -8,10 +8,23 @@ RSpec.describe GramsController, type: :controller do
     end
   end
 
+  describe "#show" do
+    it "successfully shows the user the page if the gram is found" do
+      gram = FactoryBot.create(:gram)
+      get :show, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "returns a 404 error if the gram is not found" do
+      get :show, params: { id: 'NONEXISTENT' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
 
   describe "#new" do
     it "successfully show the new form" do
-      user = create(:user)
+      user = FactoryBot.create(:user)
       sign_in user
       get :new
       expect(response).to have_http_status(:success)
@@ -31,7 +44,7 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "successfully stores a new gram to the database" do
-      user = create(:user)
+      user = FactoryBot.create(:user)
       sign_in user
       post :create, params: { gram: { message: "Hello!" } }
       expect(response).to redirect_to root_path
@@ -42,7 +55,7 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "correctly deals with validation errors" do
-      user = create(:user)
+      user = FactoryBot.create(:user)
       sign_in user
       gram_count = Gram.count
       post :create, params: { gram: { message: "" } }
