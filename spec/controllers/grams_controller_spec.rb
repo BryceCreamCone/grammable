@@ -83,7 +83,7 @@ RSpec.describe GramsController, type: :controller do
     it "allows the owner of the gram to update the gram" do
       user = FactoryBot.create(:user)
       sign_in user
-      gram = FactoryBot.create(:gram, "Not Updated Yet!")
+      gram = FactoryBot.create(:gram, message: "Not Updated Yet!")
       patch :update, params: { id: gram.id, gram: { message: "Updated!" } }
       expect(response).to redirect_to root_path
       gram.reload
