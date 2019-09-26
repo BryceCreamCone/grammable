@@ -63,4 +63,44 @@ RSpec.describe GramsController, type: :controller do
       expect(gram_count).to eq Gram.count
     end
   end
+
+
+  describe "#edit" do
+    it "shows the edit form if a gram is found" do
+      gram = FactoryBot.create(:gram)
+      get :edit, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "returns a 404 error message if a gram is not found" do
+      get :edit, params: { id: 'NONEXISTENT' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  
+  describe "#update" do
+    it "allows the owner of the gram to update the gram" do
+      user = FactoryBot.create(:user)
+      sign_in user
+      gram = FactoryBot.create(:gram, "Not Updated Yet!")
+      patch :update, params: { id: gram.id, gram: { message: "Updated!" } }
+      expect(response).to redirect_to root_path
+      gram.reload
+      expect(gram.message).to eq("Updated!")
+    end
+
+    it "returns a 404 error message if a gram is not found" do
+      patch :update, params: { id: 'NONEXISTENT', gram: { message: "Updated!" } }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "displays the edit page again if there were any validation errors" do
+      gram = FactoryBot.create(:gram, message: "Not Updated Yet!")
+      patch :update, params: { id: gram.id, gram: { message: "" } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      gram.reload
+      expect(gram.message).to eq("Not Updated Yet!")
+    end
+  end
 end

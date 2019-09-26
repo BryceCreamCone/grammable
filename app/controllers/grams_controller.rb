@@ -5,11 +5,7 @@ class GramsController < ApplicationController
   end
 
   def show
-    begin
-      @gram = Gram.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render :new, status: :not_found
-    end
+    render_if_not_found
   end
 
   def new
@@ -24,10 +20,22 @@ class GramsController < ApplicationController
     end
   end
 
+  def edit
+    render_if_not_found
+  end
+
   private
 
   def gram_params
     params.require(:gram).permit(:message)
+  end
+
+  def render_if_not_found
+    begin
+      @gram = Gram.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render plain: 'Not Found', status: :not_found
+    end
   end
   
 end
