@@ -103,4 +103,20 @@ RSpec.describe GramsController, type: :controller do
       expect(gram.message).to eq("Not Updated Yet!")
     end
   end
+
+
+  describe "#destroy" do
+    it "allows a user to destroy a gram" do
+      gram = FactoryBot.create(:gram, message: "Not Deleted.")
+      delete :destroy, params: { id: gram.id }
+      expect(response).to redirect_to root_path
+      gram = Gram.find_by_id(gram.id)
+      expect(gram).to eq nil
+    end
+
+    it "returns a 404 error message if a gram is not found" do
+      delete :destroy, params: { id: 'NONEXISTENT' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
