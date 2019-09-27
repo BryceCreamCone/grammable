@@ -12,11 +12,3 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 end
 
-
-
-
-Access Key ID:
-AKIAJ3RZHLFVO6RSP5CQ
-Secret Access Key:
-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
-
