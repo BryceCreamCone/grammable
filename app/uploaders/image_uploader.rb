@@ -11,3 +11,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [400, 300]
 
 end
+
+
+
+
+Access Key ID:
+AKIAJ3RZHLFVO6RSP5CQ
+Secret Access Key:
+eQEHeFM0rTVDdJNomLmoRwce+JkKPDkuUFVVzIj0
+
