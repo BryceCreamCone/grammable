@@ -46,7 +46,12 @@ RSpec.describe GramsController, type: :controller do
     it "successfully stores a new gram to the database" do
       user = FactoryBot.create(:user)
       sign_in user
-      post :create, params: { gram: { message: "Hello!" } }
+      post :create, params: { 
+        gram: { 
+          message: "Hello!",
+          image: fixture_file_upload("/image.png", "image/png")
+          }
+        }
       expect(response).to redirect_to root_path
 
       gram = Gram.last
