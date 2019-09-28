@@ -1,1 +1,29 @@
 @import "bootstrap";
+
+
+.grams-box {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #222;
+  border-radius: 10px;
+  box-shadow: #bebebd #4e4e4e #4e4e4e #bebebd;
+  background-color: #e1e2e3;
+  .header {
+    padding: 20px;
+    background-color: #343a40;
+    color: #FFF;
+    border-radius: 10px 10px 0 0;
+    .user-id {
+      font-size: 8px;
+    }
+    .message {
+      font-size: 24px;
+      text-align: center;
+      font-family: 'Acme';
+    }
+  }
+  .image {
+    padding: 20px;
+  }
+}
