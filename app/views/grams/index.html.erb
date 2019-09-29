@@ -13,7 +13,12 @@ style="font-family:'Pacifico',cursive">Grams!</h1><br />
         <%= gram.message %>
       </div>
       <div class="col">
-        +
+        <%= link_to edit_gram_path(gram),
+        class: 'float-right',
+        syle: "background-color:#4c7725;color:#FFE;
+        border:1px solid black;border-radius:20px;" do %>
+          <i class="far fa-edit"></i>
+        <% end %>
       </div>
     </div>
     <div class="row image justify-content-center">
@@ -22,8 +27,7 @@ style="font-family:'Pacifico',cursive">Grams!</h1><br />
     <% gram.comments.each do |comment| %>
       <div class="row comments">
         <div class="username">
-          <% user_id_array = user.email.chars %>
-          <b><%= user_id_array.split("@")[0].join("") %></b>
+          <b><%= user.username %></b>
         </div>
         <div class="comment">
           <p><%= comment.comment %></p>
