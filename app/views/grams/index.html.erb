@@ -3,20 +3,31 @@
 style="font-family:'Pacifico',cursive">Grams!</h1><br />
 
 <% @grams.each do |gram| %>
-<div class="grams-box col-8">
-  <div class="row header">
-    <div class="col user-id">
-      userid/email
+  <div class="grams-box col-8">
+    <div class="row header">
+      <div class="col user-id">
+        <% user = User.find_by(params[id: gram.user_id]) %>
+        <%= user.email %>
+      </div>
+      <div class="col message">
+        <%= gram.message %>
+      </div>
+      <div class="col">
+        +
+      </div>
     </div>
-    <div class="col message">
-      <%= gram.message %>
+    <div class="row image justify-content-center">
+      <%= image_tag gram.image.url %>
     </div>
-    <div class="col">
-      +
-    </div>
+    <% gram.comments.each do |comment| %>
+      <div class="row comments">
+        <div class="username">
+          <% user_id_array = user.email.chars %>
+          <b><%= user_id_array.split("@")[0].join("") %></b>
+        </div>
+        <div class="comment">
+          <p><%= comment.comment %></p>
+        </div>
+    <% end %>
   </div>
-  <div class="row image justify-content-center">
-    <%= image_tag gram.image.url %>
-  </div>
-</div>
 <% end %>
