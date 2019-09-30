@@ -14,7 +14,7 @@
 style="font-family:'Pacifico',cursive">Grams!</h1><br />
 
 <% @grams.each do |gram| %>
-  <div class="grams-box col-8">
+  <div class="grams-box col-6">
     <div class="row header">
       <div class="col user-id">
         <% user = User.find_by(params[id: gram.user_id]) %>
