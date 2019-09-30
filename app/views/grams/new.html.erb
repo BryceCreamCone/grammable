@@ -1,5 +1,7 @@
-<%= simple_form_for @gram do |f| %>
-  <%= f.input :message %>
-  <%= f.input :image %>
-  <%= f.submit "Post!" %>
-<% end %>
+<div class="form col-6">
+  <%= simple_form_for @gram do |f| %>
+    <%= f.input :message %>
+    <%= f.input :image %>
+    <%= f.submit "Post!", class: 'btn btn-primary' %>
+  <% end %>
+</div>

@@ -1,3 +1,14 @@
+<script>
+  $(function() {
+    $('i.fa-plus').click(function(event) {
+      let comment = $('#commentInput').text();
+      $.ajax({
+        type: 'PUT',
+        url: 
+      })
+    });
+  });
+</script>
 <br />
 <h1 class="text-center"
 style="font-family:'Pacifico',cursive">Grams!</h1><br />
@@ -13,25 +24,34 @@ style="font-family:'Pacifico',cursive">Grams!</h1><br />
         <%= gram.message %>
       </div>
       <div class="col">
-        <%= link_to edit_gram_path(gram),
-        class: 'float-right',
-        syle: "background-color:#4c7725;color:#FFE;
-        border:1px solid black;border-radius:20px;" do %>
-          <i class="far fa-edit"></i>
+        <% if current_user == gram.user %>
+          <%= link_to edit_gram_path(gram),
+          class: 'float-right' do %>
+            <i class="far fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
     </div>
     <div class="row image justify-content-center">
       <%= image_tag gram.image.url %>
     </div>
-    <% gram.comments.each do |comment| %>
-      <div class="row comments">
+    <div class="row comments">
+      <% gram.comments.each do |comment| %>
         <div class="username">
           <b><%= user.username %></b>
         </div>
         <div class="comment">
           <p><%= comment.comment %></p>
         </div>
-    <% end %>
+      <% end %>
+    </div><br />
+    <div class="row input">
+      <%= simple_form_for [gram, @comment], html: {class: "form-inline"} do |f| %>
+        <%= f.input :comment, label: false %>
+        <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+          <i class="fas fa-plus float-right"></i>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>

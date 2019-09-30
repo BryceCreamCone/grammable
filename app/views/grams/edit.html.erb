@@ -1,1 +1,14 @@
-<h1>Yay! This is the edit page for Gram with id of <%= @gram.id %>!</h1>
+<div class="form col-6">
+  <%= simple_form_for @gram do |f| %>
+    <%= f.input :message %>
+    <%= f.submit "Update Message!", class: 'btn btn-primary' %>
+  <% end %><br /><br />
+  <p>
+    <%= link_to "Delete This Gram",
+    gram_path(@gram),
+    class: "btn btn-warning",
+    :data => {:confirm => "Permenately delete this Gram?",
+              :method => "delete"} %>
+  </p>
+</div>
+
