@@ -1,8 +1,5 @@
-# README
+# Grammable
 
 A Quick Test Web Page with Rails for University of Wisconsin - Extended
 
-  | This text is simply to practice with some Git Topics |
-
-                      |MORE PRACTICE|
-
+Currently you do have to create an account in order to post a picture or comment, but if you'd like to test it out a fake email would work!
